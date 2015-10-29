@@ -8,12 +8,12 @@ function factory(logger, basePath, config) {
     var log = logger.create('preprocessor.wrap-iife');
 
     return function (content, file, done) {
-        var existingSourceMap = convertSourceMap.fromSource(content).toObject();
+        var existingSourceMapResult = convertSourceMap.fromSource(content);
 
-        var result = wrapIife(file.path, content, {sourceMaps: true, inputSourceMap: existingSourceMap});
+        var result = wrapIife(file.path, content,
+                {sourceMaps: true, inputSourceMap: existingSourceMapResult && existingSourceMapResult.toObject()});
 
-        done(null, convertSourceMap.removeComments(result.contents) + '\n' +
-            convertSourceMap.fromObject(result.sourceMap).toComment());
+        done(null, result.contents + '\n' + convertSourceMap.fromObject(result.sourceMap).toComment());
     };
 }
 
