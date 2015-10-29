@@ -1,7 +1,7 @@
 {
   "name": "karma-wrap-iife-preprocessor",
   "description": "Karma preprocessor that wrap the contents of a file inside an IIFE with full source maps support",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "dependencies": {
     "convert-source-map": "1.1.1",
     "wrap-iife": "0.0.1"
